@@ -14,15 +14,21 @@ router.get("/", function(req, res) {
 });
 
 router.post("/", function(req, res) {
-    burger.insert(req.body.name, function() {
+    burger.insert(req.body.burger_name, function() {
         res.redirect("/");
     });
 });
 
 router.put("/:id", function(req, res) {
-    burger.update(true, req.params.id, function() {
-        res.redirect("/");
-    })
-})
+    var condition = "id = " + req.params.id;
+  
+    console.log("condition", condition);
+  
+    burger.update({
+      devoured: req.body.devoured
+    }, condition, function() {
+      res.redirect("/");
+    });
+  });
 
 module.exports = router;

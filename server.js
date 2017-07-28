@@ -14,7 +14,18 @@ app.use(methodOverride("_method"));
 
 var exphbs = require("express-handlebars");
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+// var hbs = exphbs.create({
+//     helpers: {
+//         inc: function(value) { return parseInt(value) + 1;}
+//     }
+// })
+
+app.engine("handlebars", exphbs({ 
+    defaultLayout: "main",
+    helpers: {
+        inc: function(value) { return parseInt(value) + 1;}
+    } 
+}));
 app.set("view engine", "handlebars");
 
 var routes = require('./controllers/burgers_controller.js');
