@@ -2,9 +2,10 @@ const express = require('express');
 const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 
-const port = 3000;
 
 var app = express();
+
+app.set('port', (process.env.PORT || 3000));
 
 app.use(express.static("public"));
 
@@ -30,4 +31,4 @@ var routes = require('./controllers/burgers_controller.js');
 
 app.use("/", routes);
 
-app.listen(port);
+app.listen(app.get('port'));
